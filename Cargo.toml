@@ -1,0 +1,46 @@
+[package]
+name = "kiagl"
+version = "0.1.0"
+edition = "2021"
+description = "source code for kiagl.com"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dioxus = "0.3"
+dioxus-web = "0.3"
+# fermi = "0.3"
+sir = { version = "0.3", features = ["dioxus"] }
+# web-sys = { version = "0.3", features = ["Window"] }
+# gloo-timers = { version = "0.2", features = ["futures"] }
+# rand_core = { version = "0.6", features = ["std"] }
+# getrandom = { version = "0.2", features = ["js"] }
+
+[profile.dev]
+opt-level = 0
+debug = true
+split-debuginfo = '...' # Platform-specific.
+debug-assertions = true
+overflow-checks = true
+panic = 'unwind'
+lto = false
+incremental = true
+codegen-units = 256
+rpath = false
+
+[profile.dev.package."*"]
+opt-level = 'z'
+
+[profile.release]
+opt-level = 1
+debug = false
+strip = "debuginfo"
+debug-assertions = false
+overflow-checks = false
+panic = 'unwind'
+lto = true
+incremental = true
+codegen-units = 1
+
+[profile.release.package."*"]
+opt-level = 3
